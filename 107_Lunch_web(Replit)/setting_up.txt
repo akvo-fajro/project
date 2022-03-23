@@ -1,0 +1,40 @@
+# set up apps
+$ python manage.py startapp users_additional_information
+$ python manage.py startapp pages
+$ python manage.py startapp menu
+
+
+# create a template folder
+
+
+# create a superuser
+$ python manage.py makemigrations
+$ python manage.py migrate
+$ python manage.py createsuperuser
+
+
+# go finish users_additional_information
+$ python manage.py makemigrations
+$ python manage.py migrate
+
+
+# go finish templates
+
+
+# go finish pages
+# set up url's for pages app
+
+
+# go finish menu
+# set up url's for menu
+
+
+# set up permition for order model (in menu)
+$ python manage.py shell
+>>> from menu.models import Order
+>>> from django.contrib.auth.models import Permission
+>>> from django.contrib.contenttypes.models import ContentType
+>>> content_type = ContentType.objects.get_for_model(Order)
+>>> permission = Permission.objects.create(codename='is_manager',name='is manager',content_type=content_type)
+$ python manage.py makemigrations
+$ python manage.py migrate
