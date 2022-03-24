@@ -216,7 +216,8 @@ def food_change_view(request,my_food_id,*args,**kargs):
         form.save()
         form = FoodChangeForm(instance=obj)
     context = {
-        'form':form
+        'form':form,
+        'obj':obj
     }
     return render(request,'menu_pages/food_change_view.html',context)
 
