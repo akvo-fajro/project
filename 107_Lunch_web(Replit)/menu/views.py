@@ -11,6 +11,32 @@ from .forms import FoodCreateForm,FoodChangeForm,OrderCreateForm,PayMoneyForm
 
 # manager
 @login_required(login_url='login')
+def forgot_order(request,*args,**kargs):
+    user = User.objects.get(username=request.user)
+    if not user.has_perm('menu.is_manager'):
+        return render(request,'manager_pages/no_permition.html',{})
+    user_list = list(User.objects.all())
+    for user in user_list:
+        order_list = Order.objects.filter(order_sit_number=user.useradditionalinformation.sit_number)
+        total_money = 0
+        for order in order_list:
+            if order.number_of_ordering == 0:
+                continue
+            total_money += order.food_price*order.number_of_ordering
+        for i in range(len(order_list)-1,-1,-1):
+            order_list[i].delete()
+        if total_money == 0:
+            continue
+        money_pay_back = total_money
+        if user.useradditionalinformation.money_to_pay != 0:
+            money_pay_back = total_money - user.useradditionalinformation.money_to_pay
+            user.useradditionalinformation.money_to_pay = 0
+            user.useradditionalinformation.save()
+        user.useradditionalinformation.money_pay_back += money_pay_back
+        user.useradditionalinformation.save()
+    return redirect('/manager/money_paying')
+
+@login_required(login_url='login')
 def pay_back_money(request,user_id,*args,**kargs):
     user = User.objects.get(username=request.user)
     if not user.has_perm('menu.is_manager'):
