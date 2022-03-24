@@ -8,6 +8,7 @@
 <br>
 
 <form method="POST" class="go_center" style="border-width:1px;border-style:solid;padding:20px;margin:auto 10%"> {% csrf_token %}
+  <p>餐點:{{ obj.name }}</p>
   {{ form.as_p }}
   <input type="submit" value="更改">
 </form>
