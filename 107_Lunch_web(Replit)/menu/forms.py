@@ -17,11 +17,10 @@ class OrderCreateForm(forms.ModelForm):
 
 # food
 class FoodChangeForm(forms.ModelForm):
-    name = forms.CharField(label='餐點')
     price = forms.DecimalField(label='價錢')
     class Meta:
         model = Food
-        fields = ['name','price']
+        fields = ['price']
 
 class FoodCreateForm(forms.ModelForm):
     name = forms.CharField(label='餐點')
