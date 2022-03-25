@@ -20,7 +20,7 @@ from django.urls import path
 from pages.views import homepage_view,login_view,logout_view,profile_view,change_password_view
 from menu.views import food_detail_view,food_create_view,food_change_view,\
                     food_delete,order_create_view,cart_view,all_order_view,\
-                    be_a_manager,manager_view,money_paying_condition,pay_money,pay_back_money,forgor_order
+                    be_a_manager,manager_view,money_paying_condition,pay_money,pay_back_money,forgot_order
 
 
 urlpatterns = [
