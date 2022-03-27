@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block  content_active_manager %}active{% endblock %}
+
+{% block content %}
+<h2 class="go_center">負責人主頁</h2>
+<hr>
+<br>
+
+<div class="go_center"><a href="/manager/all_order_view"><button class="btn btn-outline-dark" type="submit">餐點總覽</button></a></div>
+<br>
+<div class="go_center"><a href="/manager/money_paying"><button class="btn btn-outline-dark" type="submit">付錢情況</button></a></div>
+<br>
+<div class="go_center"><a href="/manager/forgot_order"><button class="btn btn-outline-dark" type="submit">啊X!我忘記點餐了!哭@@</button></a></div>
+
+{% endblock %}
