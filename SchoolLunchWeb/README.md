@@ -54,7 +54,7 @@
     - urls.py
         - set pages' url
         - set menu's url
-<br>
+
 `$ python3 manage.py makemigrations`<br>
 `$ python3 manage.py migrate`<br>
 `$ python3 manage.py createsuperuser`<br>
