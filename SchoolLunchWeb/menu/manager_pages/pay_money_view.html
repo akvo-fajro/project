@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block  content_active_manager %}active{% endblock %}
+
+
+{% block content %}
+<h2 class="go_center">繳錢</h2>
+<hr>
+<br>
+<form action="" method="POST" class="go_center"> {% csrf_token %}
+  <h5>座號:{{ user.useradditionalinformation.sit_number }}</h5>
+  <h5>姓名:{{ user.username}}</h5>
+  <h5>要繳的錢:{{ user.useradditionalinformation.money_to_pay }}</h5>
+  {{ form.as_p }}
+
+    <input type="submit" value="繳交">
+</form>
+<br>
+
+{% if user_is_manager %}
+<div class="go_center"><a href="/manager/money_paying"><button class="btn btn-outline-dark" type="submit">回到付錢情況</button></a></div>
+{% else %}
+<div class="go_center"><a href="/accounts/profile"><button class="btn btn-outline-dark" type="submit">回到個人資料</button></a></div>
+{% endif %}
+{% endblock %}
