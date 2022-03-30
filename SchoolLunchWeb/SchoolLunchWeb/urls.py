@@ -18,7 +18,7 @@ from django.urls import path
 
 # import view;s from app
 from pages.views import homepage_view,login_view,logout_view,profile_view,change_password_view
-from menu.views import food_detail_view,food_create_view,forgot_order,pay_money_user_view,\
+from menu.views import food_detail_view,food_create_view,forgot_order_view,pay_money_user_view,\
                     food_delete,order_create_view,cart_view,all_order_view,food_change_view,\
                     be_a_manager,manager_view,money_paying_condition_view,pay_money_manager_view,pay_back_money_view
 
@@ -50,5 +50,5 @@ urlpatterns = [
     path('manager/money_paying',money_paying_condition_view,name='money_paying'),
     path('manager/pay_money/<int:user_id>',pay_money_manager_view,name='pay_money'),
     path('manager/pay_back_money/<int:user_id>',pay_back_money_view,name='pay_back_money'),
-    path('manager/forgot_order',forgot_order,name='forgotorder'),
+    path('manager/forgot_order',forgot_order_view,name='forgotorder'),
 ]
