@@ -5,7 +5,7 @@ from django.http import Http404
 
 # import self define models and form
 from .models import Food,Order
-from .forms import FoodCreateForm,OrderCreateForm,PayMoneyForm,FoodChangeForm
+from .forms import FoodCreateForm,OrderCreateForm,PayMoneyForm,FoodChangeForm,ForgotOrderForm
 
 # Create your views here.
 
@@ -34,31 +34,37 @@ def pay_money_user_view(request,*args,**kargs):
 
 # manager
 @login_required(login_url='login')
-def forgot_order(request,*args,**kargs):
+def forgot_order_view(request,*args,**kargs):
     user = User.objects.get(username=request.user)
     if not user.has_perm('menu.is_manager'):
         return render(request,'manager_pages/no_permition_view.html',{})
-    user_list = list(User.objects.all())
-    for user in user_list:
-        order_list = Order.objects.filter(order_sit_number=user.useradditionalinformation.sit_number)
-        money_pay_back = 0
-        for order in order_list:
-            if order.number_of_ordering == 0:
+    form = ForgotOrderForm()
+    if (request.method == "POST") and (str(request.user) == str(request.POST.get('name'))):
+        user_list = list(User.objects.all())
+        for user in user_list:
+            order_list = Order.objects.filter(order_sit_number=user.useradditionalinformation.sit_number)
+            money_pay_back = 0
+            for order in order_list:
+                if order.number_of_ordering == 0:
+                    continue
+                order_food = Food.objects.get(food_id=order.food_id)
+                money_pay_back += order_food.price*order.number_of_ordering
+            for i in range(len(order_list)-1,-1,-1):
+                order_list[i].delete()
+            if money_pay_back == 0:
                 continue
-            order_food = Food.objects.get(food_id=order.food_id)
-            money_pay_back += order_food.price*order.number_of_ordering
-        for i in range(len(order_list)-1,-1,-1):
-            order_list[i].delete()
-        if money_pay_back == 0:
-            continue
-        money_pay_back = money_pay_back
-        if user.useradditionalinformation.money_to_pay != 0:
-            money_pay_back -= user.useradditionalinformation.money_to_pay
-            user.useradditionalinformation.money_to_pay = 0
+            money_pay_back = money_pay_back
+            if user.useradditionalinformation.money_to_pay != 0:
+                money_pay_back -= user.useradditionalinformation.money_to_pay
+                user.useradditionalinformation.money_to_pay = 0
+                user.useradditionalinformation.save()
+            user.useradditionalinformation.money_pay_back += money_pay_back
             user.useradditionalinformation.save()
-        user.useradditionalinformation.money_pay_back += money_pay_back
-        user.useradditionalinformation.save()
-    return redirect('/manager/money_paying')
+        return redirect('/manager/money_paying')
+    context = {
+        'form':form
+    }
+    return render(request,'manager_pages/forgot_order_view.html',context)
 
 @login_required(login_url='login')
 def pay_back_money_view(request,user_id,*args,**kargs):
