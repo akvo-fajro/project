@@ -39,6 +39,7 @@
         - order_create_view.html
     - manager_pages
         - all_order_view.html
+        - forgot_order_view.html
         - manager_view.html
         - money_paying_condition_view.html
         - no_permition_view.html
