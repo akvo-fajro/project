@@ -3,6 +3,9 @@ from django import forms
 from .models import Food,Order
 
 # respond person
+class ForgotOrderForm(forms.Form):
+    name = forms.CharField(max_length=10,label='名子')
+
 class PayMoneyForm(forms.Form):
     money = forms.DecimalField(label='繳錢')
 
