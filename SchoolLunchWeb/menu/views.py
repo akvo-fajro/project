@@ -34,6 +34,79 @@ def pay_money_user_view(request,*args,**kargs):
 
 # manager
 @login_required(login_url='login')
+def change_new_menu(request,*args,**kargs):
+    user = User.objects.get(username=request.user)
+    if not user.has_perm('menu.is_manager'):
+        return render(request,'manager_pages/no_permition_view.html',{})
+    food_list = list(Food.objects.all())
+    order_list = list(Order.objects.all())
+    for i in range(len(food_list)-1,-1,-1):
+        food_list[i].delete()
+    for i in range(len(order_list)-1,-1,-1):
+        order_list[i].delete()
+    user_list = list(User.objects.all())
+    perm = Permission.objects.get(codename='is_manager')
+    perm_order = Permission.objects.get(codename='can_order')
+    for user in user_list:
+        if user.has_perm('menu.is_manager'):
+            user.user_permissions.remove(perm)
+        if not user.has_perm('menu.can_order'):
+            user.user_permissions.add(perm_order)
+    return redirect('/food/detail')
+
+@login_required(login_url='login')
+def user_no_be_manager(request,*args,**kargs):
+    user = User.objects.get(username=request.user)
+    if not user.has_perm('menu.is_manager'):
+        return render(request,'manager_pages/no_permition_view.html',{})
+    perm = Permission.objects.get(codename='is_manager')
+    user.user_permissions.remove(perm)
+    return redirect('/manager/change_permition')
+
+@login_required(login_url='login')
+def clear_all_user_money(request,*args,**kargs):
+    user = User.objects.get(username=request.user)
+    if not user.has_perm('menu.is_manager'):
+        return render(request,'manager_pages/no_permition_view.html',{})
+    user_list = User.objects.all()
+    for user in user_list:
+        user.useradditionalinformation.money_to_pay = 0
+        user.useradditionalinformation.money_pay_back = 0
+        user.useradditionalinformation.save()
+    return redirect('/manager/change_permition')
+
+@login_required(login_url='login')
+def let_user_not_order(request,*args,**kargs):
+    user = User.objects.get(username=request.user)
+    if not user.has_perm('menu.is_manager'):
+        return render(request,'manager_pages/no_permition_view.html',{})
+    user_list = User.objects.all()
+    for user in user_list:
+        if user.has_perm('menu.can_order'):
+            perm = Permission.objects.get(codename='can_order')
+            user.user_permissions.remove(perm)
+    return redirect('/manager/change_permition')
+
+@login_required(login_url='login')
+def let_user_order(request,*args,**kargs):
+    user = User.objects.get(username=request.user)
+    if not user.has_perm('menu.is_manager'):
+        return render(request,'manager_pages/no_permition_view.html',{})
+    user_list = User.objects.all()
+    for user in user_list:
+        if not user.has_perm('menu.can_order'):
+            perm = Permission.objects.get(codename='can_order')
+            user.user_permissions.add(perm)
+    return redirect('/manager/change_permition')
+
+@login_required(login_url='login')
+def change_permition_view(request,*args,**kargs):
+    user = User.objects.get(username=request.user)
+    if not user.has_perm('menu.is_manager'):
+        return render(request,'manager_pages/no_permition_view.html',{})
+    return render(request,'manager_pages/change_permition_view.html',{})
+
+@login_required(login_url='login')
 def forgot_order_view(request,*args,**kargs):
     user = User.objects.get(username=request.user)
     if not user.has_perm('menu.is_manager'):
