@@ -18,9 +18,9 @@ from django.urls import path
 
 # import view;s from app
 from pages.views import homepage_view,login_view,logout_view,profile_view,change_password_view
-from menu.views import food_detail_view,food_create_view,forgot_order_view,pay_money_user_view,\
-                    food_delete,order_create_view,cart_view,all_order_view,food_change_view,\
-                    be_a_manager,manager_view,money_paying_condition_view,pay_money_manager_view,pay_back_money_view
+from menu.views import food_detail_view,food_create_view,forgot_order_view,pay_money_user_view,let_user_order,let_user_not_order,\
+                    food_delete,order_create_view,cart_view,all_order_view,food_change_view,change_permition_view,clear_all_user_money,\
+                    be_a_manager,manager_view,money_paying_condition_view,pay_money_manager_view,pay_back_money_view,user_no_be_manager,change_new_menu
 
 
 urlpatterns = [
@@ -51,4 +51,10 @@ urlpatterns = [
     path('manager/pay_money/<int:user_id>',pay_money_manager_view,name='pay_money'),
     path('manager/pay_back_money/<int:user_id>',pay_back_money_view,name='pay_back_money'),
     path('manager/forgot_order',forgot_order_view,name='forgotorder'),
+    path('manager/change_permition',change_permition_view,name='change_permition'),
+    path('manager/let_user_order',let_user_order,name='let_user_order'),
+    path('manager/let_user_not_order',let_user_not_order,name='let_user_not_order'),
+    path('manager/clear_all_user_money',clear_all_user_money,name='clear_all_user_money'),
+    path('manager/user_no_be_manager',user_no_be_manager,name='user_no_be_manager'),
+    path('manager/change_new_menu',change_new_menu,name='change_new_menu'),
 ]
