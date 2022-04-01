@@ -45,6 +45,7 @@
         - no_permition_view.html
         - pay_back_money_view.html
         - pay_money_view.html
+        - change_permition_view.html
 - set a directory 'templates'
     - base.html
 - set up SchoolLunchWeb
