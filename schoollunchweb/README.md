@@ -1,5 +1,7 @@
 # schoollunchweb manual
 
+> the original code is in the schoollunchweb.tar.gz in the schoollunchweb_all.tar.gz
+
 ### environment
 `ubuntu 20.04 LTS`<br>
 `python 3.8.10`<br>
