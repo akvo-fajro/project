@@ -13,6 +13,7 @@
 
 ### setup schoollunchweb and it's uwsgi
 `$ pip3 install django`<br>
+`$ pip3 install django_crontab`<br>
 `$ pip3 install cryptography`<br>
 `$ pip3 install PyMySQL`<br>
 `$ pip3 install uwsgi`<br>
