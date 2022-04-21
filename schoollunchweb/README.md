@@ -36,7 +36,7 @@
 `$ docker-compose -f mysqldb_docker.yml up -d`<br>
 
 ### website
-[django-contrib](https://www.gushiciku.cn/pl/238K/zh-tw)
+[django-contrib](https://www.gushiciku.cn/pl/238K/zh-tw)<br>
 [install docker on ubuntu](https://docs.docker.com/engine/install/ubuntu/)<br>
 [install docker-compose on ubuntu](https://docs.docker.com/compose/install/)<br>
 [set up nginx](https://orcahmlee.github.io/devops/nginx-uwsgi-django-root/)<br>
