@@ -1,7 +1,5 @@
 # schoollunchweb manual
 
-> the original code is in the schoollunchweb.tar.gz in the schoollunchweb_all.tar.gz
-
 ### environment
 `ubuntu 20.04 LTS`<br>
 `python 3.8.10`<br>
@@ -36,3 +34,10 @@
 
 ### start the mysql
 `$ docker-compose -f mysqldb_docker.yml up -d`<br>
+
+### website
+[install docker on ubuntu](https://docs.docker.com/engine/install/ubuntu/)<br>
+[install docker-compose on ubuntu](https://docs.docker.com/compose/install/)<br>
+[set up nginx](https://orcahmlee.github.io/devops/nginx-uwsgi-django-root/)<br>
+[no-ip web](https://www.noip.com/)<br>
+[certbot reference](https://certbot.eff.org/instructions?ws=nginx&os=ubuntufocal)<br>
