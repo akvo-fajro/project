@@ -17,16 +17,26 @@
 `$ pip3 install uwsgi`<br>
 `$ tar zxvf schoollunchweb_all.tar.gz`<br>
 `$ mv schoollunchweb_all site`<br>
+> set up the environment variable<br>
+> put the under line in the ~/.bashrc file<br>
+>> export DJANGO_SECRET_KEY={put your django secret key here};<br>
+>> export DJANGO_DATABASE_NAME={put the database name you create on docker};<br>
+>> export DJANGO_DATABASE_USER={put the user naem you create on docker};<br>
+>> export DJANGO_DATABASE_PASSWD={put the user password here};<br>
+>> export DJANGO_DATABASE_HOST='127.0.0.1';<br>
+>> export DJANGO_DATABASE_PORT={put the ports you open for docker and host (default setting is 8080)};<br>
+
 `$ cd site`<br>
 `$ docker-compose -f mysqldb_docker.yml up -d`<br>
 `$ ./schoollunchweb_init`<br>
+
 > check is the web working
 
 ### shutdown the web
 `$ uwsgi --stop /tmp/schoollunchweb-master.pid`<br>
 
 ### start the web (not initialize)
-`$ ./schoollunchweb_start`
+`$ uwsgi -d --ini uwsgi.ini`<br>
 
 ### stop the mysql
 `$ docker-compose -f mysqldb_docker.yml down`<br>
