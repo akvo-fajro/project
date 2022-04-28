@@ -9,4 +9,4 @@ The author of this project is curious<br>
 <br>
 
 for the file in schoollunch_all.tar.gz , please see [file.md](https://github.com/akvo-fajro/project/blob/main/schoollunchweb/file.md)<br>
-for how to setup the website , please see [setup.md](b)<br>
+for how to setup the website , please see [setup.md](https://github.com/akvo-fajro/project/blob/main/schoollunchweb/setup.md)<br>
