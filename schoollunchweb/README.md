@@ -8,5 +8,5 @@ The author of this project is curious<br>
 <hr>
 <br>
 
-for the file in schoollunch_all.tar.gz , please see [file.md](a)<br>
+for the file in schoollunch_all.tar.gz , please see [file.md](https://github.com/akvo-fajro/project/blob/main/schoollunchweb/file.md)<br>
 for how to setup the website , please see [setup.md](b)<br>
